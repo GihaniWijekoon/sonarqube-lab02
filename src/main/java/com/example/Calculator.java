@@ -11,6 +11,7 @@ public class Calculator {
             throw new IllegalArgumentException("Operation cannot be null");
         }
 
+        // FIX: Using comma-separated labels and switch expression (Java 14+)
         return switch (op) {
             case "add", "add-again" -> a + b;
             case "sub", "sub-again" -> a - b;
