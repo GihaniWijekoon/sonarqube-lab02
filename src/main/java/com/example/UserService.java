@@ -14,7 +14,8 @@ public class UserService {
             throw new IllegalArgumentException("Username cannot be empty");
         }
 
-        String query = "SELECT * FROM users WHERE name = ?";
+        // FIX: Replaced SELECT * with specific columns (id, name)
+        String query = "SELECT id, name FROM users WHERE name = ?";
 
         try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/db", "root", password);
              PreparedStatement pstmt = conn.prepareStatement(query)) {
@@ -38,5 +39,4 @@ public class UserService {
             pstmt.execute();
         }
     }
-
 }
