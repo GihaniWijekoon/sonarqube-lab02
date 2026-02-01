@@ -1,4 +1,4 @@
-package main.java.com.example;
+package com.example;
 
 public class App {
 
@@ -12,4 +12,3 @@ public class App {
         service.findUser("admin");
     }
 }
-

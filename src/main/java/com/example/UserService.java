@@ -1,4 +1,4 @@
-package main.java.com.example;
+package com.example;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,10 +6,8 @@ import java.sql.Statement;
 
 public class UserService {
 
-    // SECURITY ISSUE: Hardcoded credentials
     private String password = "admin123";
 
-    // VULNERABILITY: SQL Injection
     public void findUser(String username) throws Exception {
 
         Connection conn =
