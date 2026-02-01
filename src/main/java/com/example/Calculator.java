@@ -1,38 +1,33 @@
 package com.example;
 
+import java.util.logging.Logger;
+
 public class Calculator {
 
-    // Code Smell: Long method + high complexity
+    private static final Logger logger = Logger.getLogger(Calculator.class.getName());
+
     public int calculate(int a, int b, String op) {
+        if (op == null) {
+            throw new IllegalArgumentException("Operation cannot be null");
+        }
 
-        if(op.equals("add")) {
-            return a + b;
-        }
-        if(op.equals("sub")) {
-            return a - b;
-        }
-        if(op.equals("mul")) {
-            return a * b;
-        }
-        if(op.equals("div")) {
-            if(b == 0) {
-                return 0;
+        return switch (op) {
+            case "add", "add-again" -> a + b;
+            case "sub", "sub-again" -> a - b;
+            case "mul" -> a * b;
+            case "div" -> {
+                if (b == 0) {
+                    logger.warning("Division by zero attempted. Returning 0.");
+                    yield 0;
+                }
+                yield a / b;
             }
-            return a / b;
-        }
-        if(op.equals("mod")) {
-            return a % b;
-        }
-
-        return 0;
-    }
-
-    // Code Duplication (students must remove)
-    public int addNumbers(int x, int y) {
-        return x + y;
-    }
-
-    public int sumValues(int a, int b) {
-        return a + b;
+            case "mod" -> a % b;
+            case "pow" -> (int) Math.pow(a, b);
+            default -> {
+                logger.log(java.util.logging.Level.INFO, "Unknown operation: {0}", op);
+                yield 0;
+            }
+        };
     }
 }
