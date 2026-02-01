@@ -11,7 +11,6 @@ public class Calculator {
             throw new IllegalArgumentException("Operation cannot be null");
         }
 
-        // FIX: Merged cases using comma-separated labels
         return switch (op) {
             case "add", "add-again" -> a + b;
             case "sub", "sub-again" -> a - b;
